@@ -1,2 +1,2 @@
 # Inference uses the original fitted trees exported as data; no pickle loading.
-streamlit==1.50.0
+streamlit==1.52.2
