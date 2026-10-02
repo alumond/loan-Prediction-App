@@ -1,7 +1,2 @@
-# Deploy with Python 3.11 in Streamlit Community Cloud's Advanced settings.
-# The saved model records scikit-learn 1.6.1; keep its loader on that version.
+# Inference uses the original fitted trees exported as data; no pickle loading.
 streamlit==1.50.0
-pandas==2.3.3
-numpy==2.0.2
-scikit-learn==1.6.1
-joblib==1.5.3

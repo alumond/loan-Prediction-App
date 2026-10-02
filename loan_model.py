@@ -1,7 +1,6 @@
 """The original model, with an explicit interface for the scenario workspace."""
 from pathlib import Path
-import joblib
-import pandas as pd
+from portable_forest import PortableForest
 
 ROOT = Path(__file__).resolve().parent
 FEATURES = ('Gender', 'Married', 'Dependents', 'Education', 'Self_Employed',
@@ -14,7 +13,7 @@ EXAMPLE = dict(Gender='Male', Married='Yes', Dependents='0', Education='Graduate
 
 
 def load_model():
-    return joblib.load(ROOT / 'loan_pipeline.pkl')
+    return PortableForest(ROOT)
 
 
 def validate_scenario(values):
@@ -30,7 +29,7 @@ def validate_scenario(values):
 
 
 def predict_scenario(model, values):
-    frame = pd.DataFrame([{field: values[field] for field in FEATURES}])
+    frame = [{field: values[field] for field in FEATURES}]
     prediction = model.predict(frame)[0]
     approval_index = list(model.classes_).index(1)
     probability = float(model.predict_proba(frame)[0][approval_index])
